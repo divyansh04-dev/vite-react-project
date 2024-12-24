@@ -5,8 +5,7 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate loading
-    const timer = setTimeout(() => setIsLoading(false), 3000); // Adjust the timeout as needed
+    const timer = setTimeout(() => setIsLoading(false), 2000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -17,7 +16,6 @@ const App = () => {
   return (
     <div className="p-4">
       <h1 className="text-2xl font-bold text-center">Welcome to My App!</h1>
-      {/* Your app content goes here */}
     </div>
   );
 };
