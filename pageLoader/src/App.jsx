@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import PageLoader from "./components/PageLoader";
+import Header from "./components/Header";
+import MainContent from "./components/MainContent";
+import Footer from "./components/Footer";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -14,8 +17,10 @@ const App = () => {
   }
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold text-center">Welcome to My App!</h1>
+    <div className="min-h-screen flex flex-col">
+      <Header />
+      <MainContent />
+      <Footer />
     </div>
   );
 };
