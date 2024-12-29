@@ -1,11 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Navbar from "./components/nav";
 
 function App() {
   const [todos, setTodos] = useState([]);
   const [todo, setTodo] = useState("");
+  const task = useRef(null);
+  const handleAddBtn = useRef(null);
+  const handleEditBtn = useRef(null);
+  const [editIndex, setEditIndex] = useState(null);
 
-  const handleEdit = () => {};
+  const handleEdit = () => {
+    if (editIndex !== null) {
+      const updatedTodos = todos.map((item, i) =>
+        i === editIndex ? { ...item, task: todo } : item
+      );
+      setTodos(updatedTodos);
+      setTodo("");
+      setEditIndex(null);
+      handleAddBtn.current.style.display = "block";
+      handleEditBtn.current.style.display = "none";
+    }
+  };
+
+  const handleChangeEdit = (index) => {
+    const selectedTodo = todos[index];
+    if (selectedTodo) {
+      task.current.value = selectedTodo.task;
+      handleAddBtn.current.style.display = "none";
+      handleEditBtn.current.style.display = "block";
+      setTodo(selectedTodo.task);
+      setEditIndex(index);
+    } else {
+      alert("Something went wrong!");
+    }
+  };
 
   const handleDelete = (index) => {
     const newTodos = todos.filter((_, i) => i !== index);
@@ -13,9 +41,10 @@ function App() {
   };
 
   const handleAdd = () => {
-    todo.trim() !== "" &&
+    if (todo.trim() !== "") {
       setTodos([...todos, { task: todo, isCompleted: false }]);
-    setTodo("");
+      setTodo("");
+    }
   };
 
   const handleChange = (e) => {
@@ -41,16 +70,25 @@ function App() {
           <input
             type="text"
             name="task"
+            ref={task}
             value={todo}
             onChange={handleChange}
             className="flex-1 p-2 border border-gray-300 rounded-md"
             placeholder="Enter a new task"
           />
           <button
+            ref={handleAddBtn}
             onClick={handleAdd}
             className="ml-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
           >
             Add Task
+          </button>
+          <button
+            ref={handleEditBtn}
+            onClick={handleEdit}
+            className="ml-2 px-4 py-2 hidden bg-blue-500 text-white rounded-md hover:bg-blue-600"
+          >
+            Edit Task
           </button>
         </div>
 
@@ -75,7 +113,7 @@ function App() {
               </span>
               <div className="space-x-2">
                 <button
-                  onClick={() => handleEdit(index)}
+                  onClick={() => handleChangeEdit(index)}
                   className="px-3 py-1 bg-yellow-500 text-white rounded-md hover:bg-yellow-600"
                 >
                   Edit
