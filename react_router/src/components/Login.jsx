@@ -5,7 +5,6 @@ const Login = () => {
   return (
     <>
       <div className="flex justify-center">
-        <div>login</div>
         <div>hello {username}</div>
       </div>
     </>
