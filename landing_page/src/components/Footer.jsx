@@ -40,7 +40,7 @@ export default function Footer() {
               <ul className="text-gray-500 font-medium">
                 <li className="mb-4">
                   <a
-                    href="https://github.com/hiteshchoudhary"
+                    href="https://github.com/DivyanshJaiswal04"
                     className="hover:underline"
                     target="_blank"
                     rel="noreferrer"
@@ -49,9 +49,14 @@ export default function Footer() {
                   </a>
                 </li>
                 <li>
-                  <Link to="/" className="hover:underline">
-                    Discord
-                  </Link>
+                  <a
+                    href="https://www.linkedin.com/in/divyansh-jaiswal-878961319/"
+                    className="hover:underline"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Linkedin
+                  </a>
                 </li>
               </ul>
             </div>

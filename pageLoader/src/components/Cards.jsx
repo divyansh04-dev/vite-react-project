@@ -1,16 +1,20 @@
 import React from "react";
 import Default from "../assets/Default.png";
 
-function Cards({ id, title = "no title", desc = "no desc", img = Default }) {
+function Cards({ id, title = "No title", desc = "No desc", img = Default }) {
   return (
     <div
       key={id}
-      className="relative flex flex-col justify-between h-96 w-80 rounded-xl bg-white bg-clip-border text-gray-700 shadow-md"
+      data-aos="fade-right"
+      data-aos-offset="200"
+      className="relative flex my-10 flex-col justify-between h-100 w-80 rounded-xl bg-white bg-clip-border text-gray-700 shadow-md"
     >
-      <div className="relative w-80 h-40 overflow-hidden rounded-t-xl">
+      {/* Image Section */}
+      <div className="relative w-80 h-40 overflow-hidden rounded-t-xl flex-shrink-0">
         <img src={img} alt="Card image" className="w-80 h-40 object-cover" />
       </div>
 
+      {/* Text Section */}
       <div className="p-6 flex-1">
         <h5 className="mb-2 text-xl font-semibold text-blue-gray-900">
           {title}
@@ -18,6 +22,7 @@ function Cards({ id, title = "no title", desc = "no desc", img = Default }) {
         <p className="text-base font-light leading-relaxed">{desc}</p>
       </div>
 
+      {/* Button Section */}
       <div className="mt-auto p-6 pt-0">
         <button
           type="button"

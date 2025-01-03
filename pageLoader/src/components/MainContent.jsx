@@ -1,23 +1,32 @@
 import React, { useEffect, useState } from "react";
 import Cards from "./Cards";
+import Aos from "aos";
+import "aos/dist/aos.css";
 import Image from "../assets/Image.jpg";
 
 function MainContent() {
   const [cards, setCards] = useState([]);
 
-  async function UserData() {
-    try {
-      const response = await fetch(
-        "https://jsonplaceholder.typicode.com/posts"
-      );
-      const data = await response.json();
-      setCards(data);
-    } catch (error) {
-      console.log("Error:", error);
-    }
-  }
+  useEffect(() => {
+    // Initialize AOS
+    Aos.init({ duration: 1000 });
+    Aos.refreshHard(); // Ensures AOS recalculates positions
 
-  UserData();
+    // Fetch user data
+    async function fetchUserData() {
+      try {
+        const response = await fetch(
+          "https://jsonplaceholder.typicode.com/posts"
+        );
+        const data = await response.json();
+        setCards(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+
+    fetchUserData();
+  }, []);
 
   return (
     <main className="flex-1 bg-gray-100 p-8">
